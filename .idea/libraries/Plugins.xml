@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Plugins">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../LIBRAIRY/PLUGINS/SavageFactions.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../LIBRAIRY/PLUGINS/ShopGUIPlus-1.21.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../LIBRAIRY/PLUGINS/mcMMO-1.5.081.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../LIBRAIRY/PLUGINS/askyblock.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../LIBRAIRY/PLUGINS/uSkyBlock-2.8.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../LIBRAIRY/PLUGINS/worldguard-bukkit-6.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../LIBRAIRY/PLUGINS/Vault.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

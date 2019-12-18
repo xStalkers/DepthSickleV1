@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="DepthSickle v2:jar">
+    <output-path>$USER_HOME$/Desktop/Depth-MC/plugins</output-path>
+    <root id="archive" name="DepthSickle v2.jar">
+      <element id="module-output" name="DepthSickle v2" />
+      <element id="file-copy" path="$PROJECT_DIR$/config.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/plugin.yml" />
+    </root>
+  </artifact>
+</component>
