@@ -203,7 +203,6 @@ public class PlayersHarvestListener implements Listener {
                             Main.getInstance().getConfig().getDouble("Hook.Economy.Price.CROPS"),
                             1,
                             playerInteractEvent.getClickedBlock(),
-                            Material.CROPS,
                             Material.WHEAT,
                             59,
                             7
