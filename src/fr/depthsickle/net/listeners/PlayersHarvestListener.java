@@ -40,13 +40,6 @@ public class PlayersHarvestListener implements Listener {
 
         playerInteractEvent.setCancelled(true);
 
-        if (!playerInteractEvent.getPlayer().hasPermission(Main.getInstance().getConfig().getString("Permission.Use"))) {
-            if (Main.getInstance().getAccountManager().getAccount().get(playerInteractEvent.getPlayer().getName()).isToggle()) {
-                this.send(playerInteractEvent.getPlayer(), Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noPermission").replace("&", "§"));
-            }
-            return;
-        }
-
         if (!playerInteractEvent.getPlayer().getGameMode().equals(GameMode.SURVIVAL)) {
             if (Main.getInstance().getAccountManager().getAccount().get(playerInteractEvent.getPlayer().getName()).isToggle()) {
                 this.send(playerInteractEvent.getPlayer(), Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noGamemode").replace("&", "§"));
@@ -69,7 +62,7 @@ public class PlayersHarvestListener implements Listener {
         }
 
         if (Main.getInstance().isWorldGuard()) {
-            if (!WorldGuardPlugin.inst().canBuild(playerInteractEvent.getPlayer(), playerInteractEvent.getClickedBlock().getLocation())) {
+            if (!playerInteractEvent.getPlayer().hasPermission("Permission.Bypass") && !WorldGuardPlugin.inst().canBuild(playerInteractEvent.getPlayer(), playerInteractEvent.getClickedBlock().getLocation())) {
                 if (Main.getInstance().getAccountManager().getAccount().get(playerInteractEvent.getPlayer().getName()).isToggle()) {
                     this.send(playerInteractEvent.getPlayer(), Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noRegion").replace("&", "§"));
                 }
@@ -78,7 +71,7 @@ public class PlayersHarvestListener implements Listener {
         }
 
         if (Main.getInstance().isaSkyblock()) {
-            if (!ASkyBlockAPI.getInstance().locationIsOnIsland(playerInteractEvent.getPlayer(), playerInteractEvent.getClickedBlock().getLocation()) && playerInteractEvent.getClickedBlock().getLocation().getWorld().equals(ASkyBlockAPI.getInstance().getIslandWorld())) {
+            if (!playerInteractEvent.getPlayer().hasPermission("Permission.Bypass") && !ASkyBlockAPI.getInstance().locationIsOnIsland(playerInteractEvent.getPlayer(), playerInteractEvent.getClickedBlock().getLocation()) && playerInteractEvent.getClickedBlock().getLocation().getWorld().equals(ASkyBlockAPI.getInstance().getIslandWorld())) {
                 if (Main.getInstance().getAccountManager().getAccount().get(playerInteractEvent.getPlayer().getName()).isToggle()) {
                     this.send(playerInteractEvent.getPlayer(), Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noRegion").replace("&", "§"));
                 }
@@ -90,7 +83,7 @@ public class PlayersHarvestListener implements Listener {
             uSkyBlockAPI uSkyBlockAPI = (uSkyBlockAPI) Bukkit.getPluginManager().getPlugin("uSkyBlock");
 
             if (uSkyBlockAPI != null && uSkyBlockAPI.isEnabled()) {
-                if (!uSkyBlockAPI.getIslandInfo(playerInteractEvent.getClickedBlock().getLocation()).getOnlineMembers().contains(playerInteractEvent.getPlayer())) {
+                if (!playerInteractEvent.getPlayer().hasPermission("Permission.Bypass") && !uSkyBlockAPI.getIslandInfo(playerInteractEvent.getClickedBlock().getLocation()).getOnlineMembers().contains(playerInteractEvent.getPlayer())) {
                     if (Main.getInstance().getAccountManager().getAccount().get(playerInteractEvent.getPlayer().getName()).isToggle()) {
                         this.send(playerInteractEvent.getPlayer(), Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noRegion").replace("&", "§"));
                     }
@@ -103,7 +96,7 @@ public class PlayersHarvestListener implements Listener {
             FPlayer fPlayer = FPlayers.getInstance().getByPlayer(playerInteractEvent.getPlayer());
             FLocation fLocation = new FLocation(playerInteractEvent.getClickedBlock().getLocation());
 
-            if (!Board.getInstance().getFactionAt(fLocation).isWilderness() && !fPlayer.isInOwnTerritory()) {
+            if (!playerInteractEvent.getPlayer().hasPermission("Permission.Bypass") && !Board.getInstance().getFactionAt(fLocation).isWilderness() && !fPlayer.isInOwnTerritory()) {
                 if (Main.getInstance().getAccountManager().getAccount().get(playerInteractEvent.getPlayer().getName()).isToggle()) {
                     this.send(playerInteractEvent.getPlayer(), Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noRegion").replace("&", "§"));
                 }

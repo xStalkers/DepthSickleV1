@@ -22,6 +22,7 @@ Permission:
   # USE : Permission to use the sickle.                                                  #
   #======================================================================================#
   Command: 'depthsickle.command'
+  Bypass: 'depthsickle.bypass'
   Use:
     Harvest: 'depthsickle.mod.harvest'
     Autosell: 'depthsickle.mod.autosell'

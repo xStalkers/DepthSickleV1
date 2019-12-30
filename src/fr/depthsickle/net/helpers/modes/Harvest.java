@@ -17,6 +17,13 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Harvest {
 
     public void harvestItem(Player player, int number, Block block, Material material, Material seed, int data) {
+        if (!player.hasPermission(Main.getInstance().getConfig().getString("Permission.Use.Harvest"))) {
+            if (Main.getInstance().getAccountManager().getAccount().get(player.getName()).isToggle()) {
+                this.send(player, Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noPermission").replace("&", "§"));
+            }
+            return;
+        }
+
         if (block.getData() != data) {
             if (Main.getInstance().getAccountManager().getAccount().get(player.getName()).isToggle()) {
                 this.send(player, Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("cropData").replace("&", "§"));
@@ -32,7 +39,6 @@ public class Harvest {
 
         if (Main.getInstance().isDrop()) {
             if (Main.getInstance().isContent()) {
-                // @METHOD: TRUE TRUE (FAIT)
                 int currentMaterial = this.countMaterial(player, material);
 
                 if (currentMaterial == 0) {
@@ -63,7 +69,6 @@ public class Harvest {
                 }
 
             } else if (!Main.getInstance().isContent()) {
-                // @METHOD: TRUE FALSE (FAIT)
                 if (Main.getInstance().getAccountManager().getAccount().get(player.getName()).isToggle()) {
                     this.send(player, Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("cropTake").replace("&", "§").replace("%numbre%", ""+ number).replace("%crop%", ""+ material));
                 }
@@ -73,7 +78,6 @@ public class Harvest {
             }
         } else if (!Main.getInstance().isDrop()) {
             if (Main.getInstance().isContent()) {
-                // @METHOD: FALSE TRUE (FAIT)
                 if (this.countSlot(player)) {
                     if (Main.getInstance().getAccountManager().getAccount().get(player.getName()).isToggle()) {
                         this.send(player, Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noInventory").replace("&", "§"));
@@ -109,7 +113,6 @@ public class Harvest {
                 }
 
             } else if (!Main.getInstance().isContent()) {
-                // @METHOD: FALSE FALSE
                 if (this.countSlot(player)) {
                     if (Main.getInstance().getAccountManager().getAccount().get(player.getName()).isToggle()) {
                         this.send(player, Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noInventory").replace("&", "§"));
@@ -132,6 +135,13 @@ public class Harvest {
     }
 
     public void harvestSeed(Player player, int number, Block block, Material material, Material seed, int data, int id) {
+        if (!player.hasPermission(Main.getInstance().getConfig().getString("Permission.Use.Harvest"))) {
+            if (Main.getInstance().getAccountManager().getAccount().get(player.getName()).isToggle()) {
+                this.send(player, Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noPermission").replace("&", "§"));
+            }
+            return;
+        }
+
         if (block.getData() != data) {
             if (Main.getInstance().getAccountManager().getAccount().get(player.getName()).isToggle()) {
                 this.send(player, Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("cropData").replace("&", "§"));
@@ -147,7 +157,6 @@ public class Harvest {
 
         if (Main.getInstance().isDrop()) {
             if (Main.getInstance().isContent()) {
-                // @METHOD: TRUE TRUE
                 int currentSeedMaterial = this.countMaterial(player, seed);
 
                 if (currentSeedMaterial == 0) {
@@ -178,7 +187,6 @@ public class Harvest {
                 }
 
             } else if (!Main.getInstance().isContent()) {
-                // @METHOD: TRUE FALSE
                 if (Main.getInstance().getAccountManager().getAccount().get(player.getName()).isToggle()) {
                     this.send(player, Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("cropTake").replace("&", "§").replace("%numbre%", ""+ number).replace("%crop%", ""+ material));
                 }
@@ -189,7 +197,6 @@ public class Harvest {
             }
         } else if (!Main.getInstance().isDrop()) {
             if (Main.getInstance().isContent()) {
-                // @METHOD: FALSE TRUE
                 if (this.countSlot(player)) {
                     if (Main.getInstance().getAccountManager().getAccount().get(player.getName()).isToggle()) {
                         this.send(player, Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noInventory").replace("&", "§"));
@@ -225,7 +232,6 @@ public class Harvest {
                 block.setTypeId(id);
 
             } else if (!Main.getInstance().isContent()) {
-                // @METHOD: FALSE FALSE
                 if (this.countSlot(player)) {
                     if (Main.getInstance().getAccountManager().getAccount().get(player.getName()).isToggle()) {
                         this.send(player, Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noInventory").replace("&", "§"));
@@ -278,6 +284,13 @@ public class Harvest {
     }
 
     public void harvestBlock(Player player, int number, Block block, Material material) {
+        if (!player.hasPermission(Main.getInstance().getConfig().getString("Permission.Use.Harvest"))) {
+            if (Main.getInstance().getAccountManager().getAccount().get(player.getName()).isToggle()) {
+                this.send(player, Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noPermission").replace("&", "§"));
+            }
+            return;
+        }
+
         if (Main.getInstance().isMcMMO()) {
             if (ExperienceAPI.isValidSkillType(SkillType.HERBALISM.toString())) {
                 ExperienceAPI.addRawXP(player, SkillType.HERBALISM.toString(), Main.getInstance().getConfig().getInt("Hook.McMMO."+ block.getType()));

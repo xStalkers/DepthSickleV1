@@ -15,6 +15,13 @@ import java.text.DecimalFormat;
 public class Autosell {
 
     public void economySeed(Player player, double price, int number, Block block, Material material, Material seed, int data) {
+        if (!player.hasPermission(Main.getInstance().getConfig().getString("Permission.Use.Autosell"))) {
+            if (Main.getInstance().getAccountManager().getAccount().get(player.getName()).isToggle()) {
+                this.send(player, Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noPermission").replace("&", "§"));
+            }
+            return;
+        }
+
         if (block.getData() != data) {
             if (Main.getInstance().getAccountManager().getAccount().get(player.getName()).isToggle()) {
                 this.send(player, Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("cropData").replace("&", "§"));
@@ -56,6 +63,13 @@ public class Autosell {
     }
 
     public void economyID(Player player, double price, int number, Block block, Material material, int id, int data) {
+        if (!player.hasPermission(Main.getInstance().getConfig().getString("Permission.Use.Autosell"))) {
+            if (Main.getInstance().getAccountManager().getAccount().get(player.getName()).isToggle()) {
+                this.send(player, Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noPermission").replace("&", "§"));
+            }
+            return;
+        }
+
         if (block.getData() != data) {
             if (Main.getInstance().getAccountManager().getAccount().get(player.getName()).isToggle()) {
                 this.send(player, Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("cropData").replace("&", "§"));
@@ -98,6 +112,13 @@ public class Autosell {
     }
 
     public void economyBlock(Player player, double price, int number, Block block, Material material) {
+        if (!player.hasPermission(Main.getInstance().getConfig().getString("Permission.Use.Autosell"))) {
+            if (Main.getInstance().getAccountManager().getAccount().get(player.getName()).isToggle()) {
+                this.send(player, Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noPermission").replace("&", "§"));
+            }
+            return;
+        }
+
         double priceShop = ShopGuiPlusApi.getItemStackPriceSell(player, new Items(material).create()) * number;
 
         if (priceShop <= -1.0) {
