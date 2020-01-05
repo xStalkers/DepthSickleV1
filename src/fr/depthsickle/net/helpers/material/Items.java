@@ -1,4 +1,4 @@
-package fr.depthsickle.net.helpers.librairy.material;
+package fr.depthsickle.net.helpers.material;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -67,7 +67,7 @@ public class Items {
         return this;
     }
 
-    public ItemStack build() {
+    public ItemStack create() {
         this.getItemStack().setItemMeta(this.getItemMeta());
         return this.getItemStack();
     }
