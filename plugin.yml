@@ -1,8 +1,8 @@
 name: DepthSickle
-version: 1.1.0.3
+version: 1.0.2.4_1
 author: xStalkers
 main: fr.depthsickle.net.Main
 commands:
   depthsickle:
-    description: A command adde for DepthSickle's plugin
+    description: A command added for DepthSickle's plugin
     aliases: [ds,sickle]

@@ -1,4 +1,4 @@
-package fr.depthsickle.net.helpers.metrics;
+package fr.depthsickle.net.helpers.librairy.statistic;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

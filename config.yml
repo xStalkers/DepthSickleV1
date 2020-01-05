@@ -1,90 +1,61 @@
-#======================================================================================#
-#                                                                                      #
-#                       DepthSickle created by xStalkers.                              #
-#     https://www.spigotmc.org/resources/depthsickle-automate-your-farms.70511/        #
-#                                                                                      #
-#======================================================================================#
-
+#==================================================================================#
+# Basic configuration                                                              #
+#==================================================================================#
 Material:
   Item: GOLD_HOE
-  Name: '&4*&c*&4* &c&lSickle &4*&c*&4* &7(Right click)'
-  #======================================================================================#
-  # Attribute = true : Hide the attributes of your item.                                 #
-  # Attribute = false : Leave attributes visible from your item.                         #
-  #======================================================================================#
+  Name: '&4*&c*&4* &c&lSickle &4*&c*&4* &7(Right Click)'
+  # Attribute = true  -> Hide the attributes of your item
+  # Attribute = false -> Leave attributes visible from your item
   Attribute: true
   Lore:
-    - '&fAutomate your crops on your farms.'
-
-Permission:
-  #======================================================================================#
-  # COMMAND : Permission to use commands.                                                #
-  # USE : Permission to use the sickle.                                                  #
-  #======================================================================================#
-  Command: 'depthsickle.command'
-  Bypass: 'depthsickle.bypass'
-  Use:
-    Harvest: 'depthsickle.mod.harvest'
-    Autosell: 'depthsickle.mod.autosell'
+    - '&7Pick up and replanted your plantings automatically.'
 
 Configuration:
-  #======================================================================================#
-  # If Drop is true, the items will drop to the ground.                                  #
-  # If Drop is false, the items will automatically be in the player's inventory.         #
-  #======================================================================================#
+  # Drop = true  -> Items will launch on the ground.
+  # Drop = false -> Items will be automatically put in the player's inventory.
   Drop: true
-  #======================================================================================#
-  # If Content is in true, a seed will ask the player to replant the crop .              #
-  # If Content is false, a seed will be given automatically to replant.                  #
-  #======================================================================================#
+  # Content = true  -> When a player picks up a plant, he must have this plant in the inventory.
+  # Content = false -> When the player picks up a plant, the plant will replant automatically.
   Content: false
-  #======================================================================================#
-  # List of allowed to send messages:                                                    #
-  # COMMON : Send messages to the player's chat                                          #
-  # ACTIONBAR : Send messages to the player's actionbar                                  #
-  #======================================================================================#
-  Message: 'COMMON'
-  #======================================================================================#
-  # List of allowed action:                                                              #
-  # RIGHT_CLICK_BLOCK, LEFT_CLICK_BLOCK                                                  #
-  #======================================================================================#
-  Action: RIGHT_CLICK_BLOCK
+  #==================================================================================#
+  # List of allowed action break:                                                    #
+  # RIGHT_CLICK_BLOCK, LEFT_CLICK_BLOCK                                              #
+  #==================================================================================#
+  Break: RIGHT_CLICK_BLOCK
+  #==================================================================================#
+  # List of allowed durability:                                                      #
+  # MESSAGE : Send plugin messages to the player's chat                              #
+  # ACTIONBAR : Send plugin messages to the player's actionbar                       #
+  #==================================================================================#
+  Message: "MESSAGE"
 
-Hook:
+Permission:
+  Commands: 'depthsickle.commands'
+  Use: 'depthsickle.use'
+
+Plugin:
   McMMO:
-    CARROT: 50
-    POTATO: 50
-    BEETROOT_BLOCK: 50
-    CROPS: 50
-    NETHER_WARTS: 50
-    MELON_BLOCK: 20
-    PUMPKIN: 20
-  Economy:
-    #======================================================================================#
-    # ShopGUIPlus = true : Will used the prices available in the ShopGUIPlus plugin shop.  #
-    # ShopGUIPlus = false : Will used prices later configure.                              #
-    #======================================================================================#
-    ShopGUIPlus: false
-    Price:
-      CARROT: 1
-      POTATO: 1
-      BEETROOT_BLOCK: 1
-      CROPS: 1
-      NETHER_WARTS: 1
-      MELON: 0.75
-      PUMPKIN: 0.75
-  Faction:
-    #======================================================================================#
-    # List of allowed Faction's plugins :                                                  #
-    # SavageFactions, None                                                                 #
-    #======================================================================================#
-    Plugin: 'none'
+    Experiences:
+      CARROT: 50
+      POTATO: 50
+      BEETROOT_BLOCK: 50
+      CROPS: 50
+      NETHER_WARTS: 50
+      MELON_BLOCK: 20
+      PUMPKIN: 20
 
-#======================================================================================#
-# List of allowed crops :                                                              #
-# CARROT, POTATO, BEETROOT_BLOCK, CROPS, NETHER_WARTS, MELON_BLOCK, PUMPKIN            #
-#======================================================================================#
-Crop:
+  Factions:
+    #==================================================================================#
+    # List of allowed Faction's plugins :                                              #
+    # SavageFactions, None                                                             #
+    #==================================================================================#
+    Plugin: None
+
+#==================================================================================#
+# List of allowed materials :                                                      #
+# CARROT, POTATO, BEETROOT_BLOCK, CROPS, NETHER_WARTS, MELON_BLOCK, PUMPKIN        #
+#==================================================================================#
+Plants:
   - CARROT
   - POTATO
   - BEETROOT_BLOCK
@@ -93,10 +64,10 @@ Crop:
   - MELON_BLOCK
   - PUMPKIN
 
-#======================================================================================#
-# List of allowed worlds                                                               #
-#======================================================================================#
-World:
+#==================================================================================#
+# List of allowed worlds                                                           #
+#==================================================================================#
+Worlds:
   - world
   - world_nether
   - world_the_end
