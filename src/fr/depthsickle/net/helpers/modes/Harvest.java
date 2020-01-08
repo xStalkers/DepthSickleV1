@@ -7,6 +7,7 @@ import fr.depthsickle.net.helpers.actions.ActionBar;
 import fr.depthsickle.net.helpers.material.Items;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;

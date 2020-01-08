@@ -21,8 +21,8 @@ public class SickleCommand implements CommandExecutor {
         if (!(commandSender instanceof Player)) {
             if (strings.length == 0) {
                 Bukkit.getConsoleSender().sendMessage("");
-                Bukkit.getConsoleSender().sendMessage(" §e/depthsickle reload §7- §fReload configuration files.");
-                Bukkit.getConsoleSender().sendMessage(" §e/depthsickle give [player] §7- §fGive a sickle to a player.");
+                Bukkit.getConsoleSender().sendMessage(" §e/"+ command.getName() +" reload §7- §fReload configuration files.");
+                Bukkit.getConsoleSender().sendMessage(" §e/"+ command.getName() +" give [player] §7- §fGive a sickle to a player.");
                 Bukkit.getConsoleSender().sendMessage("");
             }
 
@@ -35,8 +35,8 @@ public class SickleCommand implements CommandExecutor {
                     Bukkit.getConsoleSender().sendMessage(Main.getInstance().getLangConfiguration().getString("pluginReload").replace("&", "§"));
                 } else {
                     Bukkit.getConsoleSender().sendMessage("");
-                    Bukkit.getConsoleSender().sendMessage(" §e/depthsickle reload §7- §fReload configuration files.");
-                    Bukkit.getConsoleSender().sendMessage(" §e/depthsickle give [player] §7- §fGive a sickle to a player.");
+                    Bukkit.getConsoleSender().sendMessage(" §e/"+ command.getName() +" reload §7- §fReload configuration files.");
+                    Bukkit.getConsoleSender().sendMessage(" §e/"+ command.getName() +" give [player] §7- §fGive a sickle to a player.");
                     Bukkit.getConsoleSender().sendMessage("");
                 }
             }
@@ -59,7 +59,7 @@ public class SickleCommand implements CommandExecutor {
         }
 
         if (strings.length == 0) {
-            this.help((Player) commandSender);
+            this.help((Player) commandSender, command.getName());
         }
 
         if (strings.length == 1) {
@@ -86,7 +86,7 @@ public class SickleCommand implements CommandExecutor {
             } else if ("mode".equals(strings[0])) {
                 commandSender.sendMessage(Main.getInstance().getLangConfiguration().getString("showMode").replace("&", "§").replace("%mode%", ""+ Main.getInstance().getAccountManager().getAccount().get(commandSender.getName()).getMode()));
             } else {
-                this.help((Player) commandSender);
+                this.help((Player) commandSender, command.getName());
             }
         }
 
@@ -143,22 +143,22 @@ public class SickleCommand implements CommandExecutor {
                     commandSender.sendMessage(Main.getInstance().getLangConfiguration().getString("errorMode").replace("&", "§"));
                 }
             } else {
-                this.help((Player) commandSender);
+                this.help((Player) commandSender, command.getName());
             }
         }
 
         return true;
     }
 
-    private void help(Player player) {
+    private void help(Player player, String console) {
         player.sendMessage("");
         player.sendMessage("§6§m------------------------------------------------------------");
         if (player.hasPermission(Main.getInstance().getConfig().getString("Permission.Command"))) {
-            player.sendMessage(" §e/depthsickle reload §7- §fReload configuration files.");
-            player.sendMessage(" §e/depthsickle give [player] §7- §fGive a sickle to a player.");
+            player.sendMessage(" §e/"+ console +" reload §7- §fReload configuration files.");
+            player.sendMessage(" §e/"+ console +" give [player] §7- §fGive a sickle to a player.");
         }
-        player.sendMessage(" §e/depthsickle togglemessage §7- §fEnable / disable messages.");
-        player.sendMessage(" §e/depthsickle mode [harvest - autosell] §7- §fChange your selection mode with the sickle.");
+        player.sendMessage(" §e/"+ console +" togglemessage §7- §fEnable / disable messages.");
+        player.sendMessage(" §e/"+ console +" mode [harvest - autosell] §7- §fChange your selection mode with the sickle.");
         player.sendMessage("§6§m------------------------------------------------------------");
         player.sendMessage("");
     }

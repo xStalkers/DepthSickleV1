@@ -36,6 +36,7 @@ public class Main extends JavaPlugin {
     private boolean worldGuard = false;
     private boolean aSkyblock = false;
     private boolean uSkyblock = false;
+    private boolean fabledSkyblock = false;
     private boolean mcMMO = false;
     private boolean shopguiplus = false;
     private boolean zshop = false;
@@ -179,6 +180,11 @@ public class Main extends JavaPlugin {
         if (this.getServer().getPluginManager().getPlugin("USkyBlock") != null) {
             this.uSkyblock = true;
             this.getPlugin().add("USkyBlock");
+        }
+
+        if (this.getServer().getPluginManager().getPlugin("FabledSkyBlock") != null) {
+            this.fabledSkyblock = true;
+            this.getPlugin().add("FabledSkyBlock");
         }
 
         if (this.getServer().getPluginManager().getPlugin("mcMMO") != null) {
@@ -355,6 +361,8 @@ public class Main extends JavaPlugin {
     public boolean isaSkyblock() { return aSkyblock; }
 
     public boolean isuSkyblock() { return uSkyblock; }
+
+    public boolean isFabledSkyblock() { return fabledSkyblock; }
 
     public boolean isMcMMO() { return mcMMO; }
 

@@ -5,9 +5,8 @@ import com.massivecraft.factions.FLocation;
 import com.massivecraft.factions.FPlayer;
 import com.massivecraft.factions.FPlayers;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-import com.songoda.skyblock.SkyBlock;
-import com.songoda.skyblock.island.Island;
-import com.songoda.skyblock.island.IslandManager;
+import com.songoda.skyblock.api.SkyBlockAPI;
+import com.songoda.skyblock.api.island.IslandManager;
 import com.wasteofplastic.askyblock.ASkyBlockAPI;
 import fr.depthsickle.net.Main;
 import fr.depthsickle.net.helpers.actions.ActionBar;
@@ -30,7 +29,7 @@ public class PlayersHarvestListener implements Listener {
 
     @EventHandler
     public void onPlayerInteractEvent(PlayerInteractEvent playerInteractEvent) {
-        if (Main.getInstance().getVersion().contains("1_12")) {
+        if (Main.getInstance().getVersion().contains("1_12") || Main.getInstance().getVersion().contains("1_13") || Main.getInstance().getVersion().contains("1_14") || Main.getInstance().getVersion().contains("1_15")) {
             if (playerInteractEvent.getAction().equals(Action.PHYSICAL)) return;
             if (!playerInteractEvent.getHand().equals(EquipmentSlot.HAND)) return;
         }
@@ -95,6 +94,17 @@ public class PlayersHarvestListener implements Listener {
             }
         }
 
+        if (Main.getInstance().isFabledSkyblock()) {
+            final IslandManager islandManager = SkyBlockAPI.getIslandManager();
+
+            if (!islandManager.hasPermission(playerInteractEvent.getPlayer(), playerInteractEvent.getClickedBlock().getLocation(), "Destroy")) {
+                if (Main.getInstance().getAccountManager().getAccount().get(playerInteractEvent.getPlayer().getName()).isToggle()) {
+                    this.send(playerInteractEvent.getPlayer(), Main.getInstance().getConfig().getString("Configuration.Message"), Main.getInstance().getLangConfiguration().getString("noRegion").replace("&", "§"));
+                }
+                return;
+            }
+        }
+
         if (Main.getInstance().getFactions().equals("SavageFactions")) {
             FPlayer fPlayer = FPlayers.getInstance().getByPlayer(playerInteractEvent.getPlayer());
             FLocation fLocation = new FLocation(playerInteractEvent.getClickedBlock().getLocation());
@@ -105,6 +115,11 @@ public class PlayersHarvestListener implements Listener {
                 }
                 return;
             }
+        }
+
+        if (Main.getInstance().getVersion().contains("1_13") || Main.getInstance().getVersion().contains("1_14") || Main.getInstance().getVersion().contains("1_15")) {
+            playerInteractEvent.getPlayer().sendMessage("§d<-> Block : "+ playerInteractEvent.getClickedBlock() +" | Material : "+ playerInteractEvent.getClickedBlock().getType());
+            return;
         }
 
         switch (playerInteractEvent.getClickedBlock().getType()) {
